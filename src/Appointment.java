@@ -6,7 +6,7 @@ public class Appointment {
     private Doctor doctor;
     private LocalDate appointmentDate;
 
-    // Constructor to initialize all attributes
+    // Constructor
     public Appointment(String appointmentId, PatientBase patient, Doctor doctor, LocalDate appointmentDate) {
         this.appointmentId = appointmentId;
         this.patient = patient;
@@ -14,30 +14,31 @@ public class Appointment {
         this.appointmentDate = appointmentDate;
     }
 
-    // Getters and Setters
+    // Getter for appointmentId
     public String getAppointmentId() {
         return appointmentId;
     }
 
+    // Getter for patient
     public PatientBase getPatient() {
         return patient;
     }
 
+    // Getter for doctor
     public Doctor getDoctor() {
         return doctor;
     }
 
+    // Getter for appointmentDate
     public LocalDate getAppointmentDate() {
         return appointmentDate;
     }
 
     @Override
     public String toString() {
-        return "Appointment{" +
-                "appointmentId='" + appointmentId + '\'' +
-                ", patient=" + (patient != null ? patient.getPatientId() : "None") +
-                ", doctor=" + (doctor != null ? doctor.getDoctorId() : "None") +
-                ", appointmentDate=" + appointmentDate +
-                '}';
+        return "Appointment ID: " + appointmentId +
+                "\nPatient: " + (patient != null ? patient.getPatientId() : "None") +
+                "\nDoctor: " + (doctor != null ? doctor.getName() : "None") +
+                "\nAppointment Date: " + appointmentDate;
     }
 }

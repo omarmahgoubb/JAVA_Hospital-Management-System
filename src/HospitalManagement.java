@@ -101,6 +101,15 @@ public class HospitalManagement implements HOSPITALInterface {
         }
     }
 
+    // Find a doctor by their ID
+    public Doctor findDoctorById(String doctorId) {
+        return doctors.stream()
+                .filter(doctor -> doctor.getDoctorId().equals(doctorId))
+                .findFirst()
+                .orElse(null);
+    }
+
+
     @Override
     public void listAppointmentsByDoctor(String doctorId) {
         appointments.stream()

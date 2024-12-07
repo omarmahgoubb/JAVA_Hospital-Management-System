@@ -1,73 +1,71 @@
-/**
- * HospitalTester Class
- * Used to test the functionality of the HospitalManagement system.
- */
 import java.time.LocalDate;
 import java.util.Arrays;
 
 public class HospitalTester {
+
     public static void main(String[] args) {
-        // Initialize the HospitalManagement system
+        // Initialize HospitalManagement system
         HospitalManagement hospitalManagement = new HospitalManagement();
 
-        // Create sample doctors
+        System.out.println("===== Hospital Management System Testing =====\n");
+
+        // Adding Doctors
         Doctor doctor1 = new Doctor("D001", "Dr. Alice Greene", "Cardiology");
         Doctor doctor2 = new Doctor("D002", "Dr. Bob Wilson", "Neurology");
+        Doctor doctor3 = new Doctor("D003", "Dr. Charles Lee", "General Surgery");
+        Doctor doctor4 = new Doctor("D004", "Dr. Edward Clark", "Pediatrics");
+
         hospitalManagement.addDoctor(doctor1);
         hospitalManagement.addDoctor(doctor2);
+        hospitalManagement.addDoctor(doctor3);
+        hospitalManagement.addDoctor(doctor4);
 
-        // Create sample patients
-        PatientBase patient1 = new GeneralPatient("P001", "General", 45, Arrays.asList("Flu"), null, "General Medicine", "Ongoing");
-        PatientBase patient2 = new GeneralPatient("P002", "General", 35, Arrays.asList("Headache"), null, "Neurology", "Completed");
+        // Adding Patients
+        PatientBase patient1 = new SurgicalPatient("P001", "Surgical", 45, Arrays.asList("Diabetes"), null, "Surgery", "Ongoing", "Heart Surgery", LocalDate.of(2024, 1, 15), doctor3);
+        PatientBase patient2 = new PediatricPatient("P002", "Pediatric", 10, Arrays.asList("Asthma"), null, "Pediatrics", "Ongoing", "Parent Name");
+        PatientBase patient3 = new SurgicalPatient("P003", "Surgical", 60, Arrays.asList("Hypertension"), null, "Surgery", "Completed", "Knee Replacement", LocalDate.of(2023, 5, 10), doctor3);
+
         hospitalManagement.addPatient(patient1);
         hospitalManagement.addPatient(patient2);
+        hospitalManagement.addPatient(patient3);
 
-        // Assign doctors to patients
-        hospitalManagement.assignDoctorToPatient("P001", "D001");
-        hospitalManagement.assignDoctorToPatient("P002", "D002");
+        // Assigning Doctors to Patients
+        hospitalManagement.assignDoctorToPatient("P002", "D004");
+        hospitalManagement.assignDoctorToPatient("P004", "D002");
 
-        // Schedule appointments
-        hospitalManagement.scheduleAppointment("P001", "D001", LocalDate.of(2024, 12, 10));
-        hospitalManagement.scheduleAppointment("P002", "D002", LocalDate.of(2024, 12, 11));
+        // Scheduling Appointments
+        hospitalManagement.scheduleAppointment("P001", "D003", LocalDate.of(2024, 1, 20));
+        hospitalManagement.scheduleAppointment("P002", "D004", LocalDate.of(2024, 2, 5));
 
-        // Calculate patient bills
+        // Calculating Bills
+        System.out.println("\n===== Calculating Bills =====");
         System.out.println("Bill for P001: " + hospitalManagement.calculatePatientBill("P001"));
         System.out.println("Bill for P002: " + hospitalManagement.calculatePatientBill("P002"));
 
-        // List all patients
-        System.out.println("\nAll Patients:");
+        // Listing Patients and Doctors
+        System.out.println("\n===== Listing All Patients =====");
         hospitalManagement.listAllPatients();
 
-        // List all doctors
-        System.out.println("\nAll Doctors:");
+        System.out.println("\n===== Listing All Doctors =====");
         hospitalManagement.listAllDoctors();
 
-        // List appointments for a specific doctor
-        System.out.println("\nAppointments for Doctor D001:");
-        hospitalManagement.listAppointmentsByDoctor("D001");
+        // Listing Appointments by Doctor
+        System.out.println("\n===== Appointments for Doctor D003 =====");
+        hospitalManagement.listAppointmentsByDoctor("D003");
 
-        System.out.println("\nAppointments for Doctor D002:");
-        hospitalManagement.listAppointmentsByDoctor("D002");
+        System.out.println("\n===== Appointments for Doctor D004 =====");
+        hospitalManagement.listAppointmentsByDoctor("D004");
 
-        // Remove a patient and verify
-        hospitalManagement.removePatient("P002");
-        System.out.println("\nAll Patients after removal:");
+        // Finding a Doctor
+        System.out.println("\n===== Finding Doctor D002 =====");
+        Doctor foundDoctor = hospitalManagement.findDoctorById("D002");
+        System.out.println(foundDoctor != null ? "Doctor Found: " + foundDoctor : "Doctor not found.");
+
+        // Removing a Patient
+        System.out.println("\n===== Removing Patient P004 =====");
+        hospitalManagement.removePatient("P004");
+
+        System.out.println("\n===== Listing All Patients After Removal =====");
         hospitalManagement.listAllPatients();
-    }
-}
-
-/**
- * GeneralPatient Class
- * Represents a basic implementation of the PatientBase class for testing.
- */
-class GeneralPatient extends PatientBase {
-    public GeneralPatient(String patientId, String patientCategory, int age, java.util.List<String> medicalHistory, Doctor assignedDoctor, String currentDepartment, String treatmentStatus) {
-        super(patientId, patientCategory, age, medicalHistory, assignedDoctor, currentDepartment, treatmentStatus);
-    }
-
-    @Override
-    public double calculateTreatmentCost() {
-        // Simple cost calculation for demonstration
-        return 1000.0;
     }
 }

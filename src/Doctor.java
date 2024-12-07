@@ -1,8 +1,11 @@
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Doctor Class
+ * Represents a doctor who provides treatment to patients in the hospital.
+ */
 public class Doctor {
     private String doctorId;
     private String name;
@@ -11,7 +14,7 @@ public class Doctor {
     private LocalDate employmentDate;
     private List<PatientBase> assignedPatients;
 
-    // Constructor to initialize essential attributes
+    // Constructor with basic attributes
     public Doctor(String doctorId, String name, String specialization) {
         this.doctorId = doctorId;
         this.name = name;
@@ -19,59 +22,63 @@ public class Doctor {
         this.assignedPatients = new ArrayList<>();
     }
 
-    // Overloaded constructor to initialize all attributes
+    // Constructor with all attributes
     public Doctor(String doctorId, String name, String specialization, String contactDetails, LocalDate employmentDate) {
         this(doctorId, name, specialization);
         this.contactDetails = contactDetails;
         this.employmentDate = employmentDate;
     }
 
-    // Getters and Setters
-    public String getDoctorId() {
-        return doctorId;
-    }
-
+    // Getter for name
     public String getName() {
         return name;
     }
 
+    // Getter for doctorId
+    public String getDoctorId() {
+        return doctorId;
+    }
+
+    // Getter for specialization
     public String getSpecialization() {
         return specialization;
     }
 
+    // Getter for contactDetails
     public String getContactDetails() {
         return contactDetails;
     }
 
+    // Setter for contactDetails
     public void setContactDetails(String contactDetails) {
         this.contactDetails = contactDetails;
     }
 
-    public List<PatientBase> getAssignedPatients() {
-        return assignedPatients;
-    }
-
-    // Add a patient to the doctor's assigned list
+    // Adds a patient to the list of assigned patients
     public void addAssignedPatient(PatientBase patient) {
         assignedPatients.add(patient);
     }
 
-    // Check if the doctor is eligible for surgery based on years of experience
+    // Retrieves the list of assigned patients
+    public List<PatientBase> getAssignedPatients() {
+        return new ArrayList<>(assignedPatients);
+    }
+
+    // Determines if the doctor is eligible to perform surgeries
     public boolean isEligibleForSurgery(int experienceThreshold) {
         if (employmentDate == null) {
             return false;
         }
-        return LocalDate.now().getYear() - employmentDate.getYear() >= experienceThreshold;
+        int yearsOfExperience = LocalDate.now().getYear() - employmentDate.getYear();
+        return yearsOfExperience >= experienceThreshold;
     }
 
     @Override
     public String toString() {
-        return "Doctor{" +
-                "doctorId='" + doctorId + '\'' +
-                ", name='" + name + '\'' +
-                ", specialization='" + specialization + '\'' +
-                ", contactDetails='" + contactDetails + '\'' +
-                ", employmentDate=" + employmentDate +
-                '}';
+        return "Doctor ID: " + doctorId +
+                ", Name: " + name +
+                ", Specialization: " + specialization +
+                ", Contact Details: " + (contactDetails != null ? contactDetails : "N/A") +
+                ", Assigned Patients: " + assignedPatients.size();
     }
 }
