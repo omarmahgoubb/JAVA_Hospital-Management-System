@@ -3,7 +3,8 @@ import java.util.Arrays;
 
 public class HospitalTester {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // Initialize HospitalManagement system
         HospitalManagement hospitalManagement = new HospitalManagement();
 
@@ -31,7 +32,7 @@ public class HospitalTester {
 
         // Assigning Doctors to Patients
         hospitalManagement.assignDoctorToPatient("P002", "D004");
-        hospitalManagement.assignDoctorToPatient("P004", "D002");
+        hospitalManagement.assignDoctorToPatient("P003", "D003");
 
         // Scheduling Appointments
         hospitalManagement.scheduleAppointment("P001", "D003", LocalDate.of(2024, 1, 20));
@@ -62,8 +63,9 @@ public class HospitalTester {
         System.out.println(foundDoctor != null ? "Doctor Found: " + foundDoctor : "Doctor not found.");
 
         // Removing a Patient
-        System.out.println("\n===== Removing Patient P004 =====");
-        hospitalManagement.removePatient("P004");
+        System.out.println("\n===== Removing Patient P003 =====");
+        hospitalManagement.removePatient("P003");  // returns true/false
+            System.out.println("Patient P003 removed.");
 
         System.out.println("\n===== Listing All Patients After Removal =====");
         hospitalManagement.listAllPatients();

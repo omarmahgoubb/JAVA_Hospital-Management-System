@@ -1,11 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * PatientCategory Class
- * Represents a classification of patients based on specific criteria.
- */
-public class PatientCategory {
+
+public class PatientCategory
+{
     private String categoryId;
     private String categoryName;
     private int ageLimit;
@@ -14,7 +12,8 @@ public class PatientCategory {
     private List<String> commonMedicalConditions;
 
     // Constructor
-    public PatientCategory(String categoryId, String categoryName, int ageLimit, boolean isSpecialCareRequired) {
+    public PatientCategory(String categoryId, String categoryName, int ageLimit, boolean isSpecialCareRequired)
+    {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.ageLimit = ageLimit;
@@ -23,47 +22,56 @@ public class PatientCategory {
     }
 
     // Getter for categoryId
-    public String getCategoryId() {
+    public String getCategoryId()
+    {
         return categoryId;
     }
 
     // Getter for categoryName
-    public String getCategoryName() {
+    public String getCategoryName()
+    {
         return categoryName;
     }
 
     // Getter for ageLimit
-    public int getAgeLimit() {
+    public int getAgeLimit()
+    {
         return ageLimit;
     }
 
     // Getter for isSpecialCareRequired
-    public boolean getCareRequirement() {
+    public boolean getCareRequirement()
+    {
         return isSpecialCareRequired;
     }
 
     // Adds a new medical condition to the list
-    public void addMedicalCondition(String condition) {
+    public void addMedicalCondition(String condition)
+    {
         commonMedicalConditions.add(condition);
     }
 
     // Checks if specialized care is required
-    public boolean requiresSpecializedCare() {
+    public boolean requiresSpecializedCare()
+    {
         return isSpecialCareRequired;
     }
 
     // Sets the most recent doctor assigned to this category
-    public void setRecentDoctor(Doctor doctor) {
+    public void setRecentDoctor(Doctor doctor)
+    {
         this.recentDoctor = doctor;
     }
 
     // Checks if a patient's age is appropriate for this category
-    public boolean isAgeAppropriate(int age) {
+    public boolean isAgeAppropriate(int age)
+    {
         return age <= ageLimit;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Category ID: " + categoryId +
                 "\nCategory Name: " + categoryName +
                 "\nAge Limit: " + ageLimit +

@@ -1,5 +1,6 @@
 
-public class TreatmentData {
+public class TreatmentData
+{
     private String treatmentId;
     private String treatmentType;
     private double treatmentCost;

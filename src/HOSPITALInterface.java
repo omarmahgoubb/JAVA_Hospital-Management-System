@@ -2,7 +2,8 @@
 import java.time.LocalDate;
 import java.util.List;
 
-public interface HOSPITALInterface {
+public interface HOSPITALInterface
+{
 
     // Adds a new patient to the system
     void addPatient(PatientBase patient);

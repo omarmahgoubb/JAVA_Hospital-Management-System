@@ -72,7 +72,8 @@ public class SurgicalPatient extends PatientBase {
         surgicalPatientCount--;
     }
 
-    public static List<SurgicalPatient> getSurgicalPatientCatalog() {
+    public static List<SurgicalPatient> getSurgicalPatientCatalog()
+    {
         return new ArrayList<>(surgicalPatientCatalog);
     }
 

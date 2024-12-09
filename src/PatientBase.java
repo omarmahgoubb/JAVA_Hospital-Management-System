@@ -1,11 +1,8 @@
-/**
- * Abstract class PatientBase
- * Serves as a template for various patient categories such as SurgicalPatient and PediatricPatient.
- */
 import java.util.List;
-
-public abstract class PatientBase {
+public abstract class PatientBase
+{
     private String patientId;
+
     private String patientCategory;
     private int age;
     private List<String> medicalHistory;
@@ -14,16 +11,18 @@ public abstract class PatientBase {
     private String treatmentStatus;
 
     // Default constructor
-    public PatientBase() {
+    public PatientBase()
+    {
         this.patientId = "";
         this.patientCategory = "General";
         this.age = 0;
         this.currentDepartment = "Unknown";
         this.treatmentStatus = "Unknown";
     }
-
     // Parameterized constructor
-    public PatientBase(String patientId, String patientCategory, int age, List<String> medicalHistory, Doctor assignedDoctor, String currentDepartment, String treatmentStatus) {
+    public PatientBase(String patientId, String patientCategory, int age, List<String> medicalHistory,
+                       Doctor assignedDoctor, String currentDepartment, String treatmentStatus)
+    {
         this.patientId = patientId;
         this.patientCategory = patientCategory;
         this.age = age;
@@ -34,19 +33,23 @@ public abstract class PatientBase {
     }
 
     // Getters and Setters
-    public String getPatientId() {
+    public String getPatientId()
+    {
         return patientId;
     }
 
-    public String getPatientCategory() {
+    public String getPatientCategory()
+    {
         return patientCategory;
     }
 
-    public void setPatientCategory(String patientCategory) {
+    public void setPatientCategory(String patientCategory)
+    {
         this.patientCategory = patientCategory;
     }
 
-    public int getAge() {
+    public int getAge()
+    {
         return age;
     }
 
@@ -74,22 +77,26 @@ public abstract class PatientBase {
     public abstract double calculateTreatmentCost();
 
     // Display patient details
-    public void displayDetails() {
+    public void displayDetails()
+    {
         System.out.println("Patient ID: " + patientId);
         System.out.println("Category: " + patientCategory);
         System.out.println("Age: " + age);
         System.out.println("Department: " + currentDepartment);
         System.out.println("Treatment Status: " + treatmentStatus);
-        if (assignedDoctor != null) {
+        if (assignedDoctor != null)
+        {
             System.out.println("Assigned Doctor: " + assignedDoctor.getName());
-        } else {
+        } else
+        {
             System.out.println("Assigned Doctor: None");
         }
     }
 
     @Override
-    public String toString() {
-        return "PatientBase{" +
+    public String toString()
+    {
+        return "Patient {" +
                 "patientId='" + patientId + '\'' +
                 ", patientCategory='" + patientCategory + '\'' +
                 ", age=" + age +
